@@ -12,6 +12,7 @@ StegaSafe adalah aplikasi web Next.js untuk menyembunyikan dan mengekstrak pesan
 - Integritas payload biasa melalui 16 byte pertama SHA-256.
 - Validasi PNG berdasarkan MIME type dan magic bytes.
 - Batas file 15 MB, indikator kapasitas, dark mode, drag-and-drop, dan Web Worker.
+- Antarmuka bilingual Inggris–Indonesia, dengan bahasa Inggris sebagai default dan preferensi tersimpan lokal.
 - Tidak memiliki backend, database, analytics, atau API pemrosesan eksternal.
 
 ## Instalasi dan menjalankan
@@ -114,7 +115,7 @@ GitHub Actions menjalankan pengujian dan production build pada setiap push dan p
 
 ## Privasi
 
-Tidak ada data pengguna yang disimpan oleh aplikasi. Preferensi light/dark mode disimpan lokal melalui `localStorage`. Source code dapat diaudit langsung di repository ini.
+Tidak ada data pengguna yang disimpan oleh aplikasi. Preferensi light/dark mode dan bahasa disimpan lokal melalui `localStorage`. Source code dapat diaudit langsung di repository ini.
 
 ## Deployment ke GitHub Pages
 
