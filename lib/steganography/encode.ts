@@ -24,5 +24,14 @@ export async function encodeImage(
     new Uint8ClampedArray(imageData.data),
     new Uint8Array(payload),
   );
-  return imageDataToPng(new ImageData(pixels, imageData.width, imageData.height));
+
+  // ImageData requires an ArrayBuffer-backed array. Copying also guarantees
+  // ownership after the original pixel buffer has crossed a Worker boundary.
+  const imageDataBuffer = new ArrayBuffer(pixels.byteLength);
+  const imageDataPixels = new Uint8ClampedArray(imageDataBuffer);
+  imageDataPixels.set(pixels);
+
+  return imageDataToPng(
+    new ImageData(imageDataPixels, imageData.width, imageData.height),
+  );
 }
