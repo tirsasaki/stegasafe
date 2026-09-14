@@ -53,6 +53,31 @@ export default function SteganographyTool() {
     return () => window.clearTimeout(timer);
   }, [toast]);
 
+  useEffect(() => {
+    function handleMode(event: Event) {
+      const nextMode = (event as CustomEvent<Mode>).detail;
+      if (nextMode !== "encode" && nextMode !== "decode") return;
+      setMode(nextMode);
+      setImage((current) => {
+        if (current?.url) URL.revokeObjectURL(current.url);
+        return null;
+      });
+      setResultUrl((current) => {
+        if (current) URL.revokeObjectURL(current);
+        return "";
+      });
+      setMessage("");
+      setPassword("");
+      setConfirmation("");
+      setHeader(null);
+      setDecoded("");
+      setResultBlob(null);
+      setError("");
+    }
+    window.addEventListener("stegasafe-mode", handleMode);
+    return () => window.removeEventListener("stegasafe-mode", handleMode);
+  }, []);
+
   function clearUrls() {
     if (image?.url) URL.revokeObjectURL(image.url);
     if (resultUrl) URL.revokeObjectURL(resultUrl);
