@@ -21,9 +21,9 @@ export default function RootLayout({
         <LanguageProvider>{children}</LanguageProvider>
         
           <Script
-    src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token":"cfdd88f13a4447ae8dc8738db2c44a58"}'
-    strategy="afterInteractive"
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon='{"token":"cfdd88f13a4447ae8dc8738db2c44a58"}'
+            strategy="afterInteractive"
           />
       </body>
     </html>
