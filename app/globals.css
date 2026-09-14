@@ -31,15 +31,15 @@ body {
   }
 
   .btn {
-    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-50 disabled:cursor-not-allowed disabled:opacity-50 motion-safe:hover:-translate-y-0.5 motion-safe:active:translate-y-0 dark:focus-visible:ring-offset-slate-950;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-50 disabled:cursor-not-allowed disabled:opacity-50 dark:focus-visible:ring-offset-slate-950;
   }
 
   .btn-primary {
-    @apply btn bg-indigo-600 text-white shadow-md shadow-indigo-600/20 hover:bg-indigo-700 hover:shadow-lg;
+    @apply btn bg-indigo-600 text-white;
   }
 
   .btn-secondary {
-    @apply btn border border-slate-300 bg-white text-slate-700 hover:border-indigo-300 hover:text-indigo-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-indigo-600 dark:hover:text-indigo-300;
+    @apply btn border border-slate-300 bg-white text-slate-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200;
   }
 
   .input {
@@ -49,6 +49,26 @@ body {
   .eyebrow {
     @apply text-sm font-semibold uppercase tracking-[0.14em] text-indigo-600 dark:text-indigo-400;
   }
+}
+
+button,
+a.btn {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:is(button:not(:disabled), a.btn):active {
+  outline: 1px solid rgb(99 102 241 / 0.95);
+  outline-offset: 2px;
+  box-shadow:
+    0 0 0 3px rgb(99 102 241 / 0.2),
+    0 0 14px rgb(99 102 241 / 0.45);
+}
+
+.dark :is(button:not(:disabled), a.btn):active {
+  outline-color: rgb(165 180 252 / 0.95);
+  box-shadow:
+    0 0 0 3px rgb(129 140 248 / 0.22),
+    0 0 16px rgb(129 140 248 / 0.5);
 }
 
 @media (prefers-reduced-motion: reduce) {
