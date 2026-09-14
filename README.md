@@ -115,3 +115,13 @@ GitHub Actions menjalankan pengujian dan production build pada setiap push dan p
 ## Privasi
 
 Tidak ada data pengguna yang disimpan oleh aplikasi. Preferensi light/dark mode disimpan lokal melalui `localStorage`. Source code dapat diaudit langsung di repository ini.
+
+## Deployment ke GitHub Pages
+
+Repository ini telah dikonfigurasi untuk static export Next.js dan deployment otomatis. Website proyek menggunakan base path `/stegasafe` dan akan tersedia di:
+
+```text
+https://tirsasaki.github.io/stegasafe/
+```
+
+Di GitHub, buka **Settings → Pages**, lalu pilih **GitHub Actions** sebagai sumber deployment. Setiap push ke branch `main` akan menjalankan pengujian, membangun folder `out`, dan memublikasikan versi terbaru.
