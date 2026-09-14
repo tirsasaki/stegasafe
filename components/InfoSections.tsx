@@ -1,7 +1,7 @@
 "use client";
 
 import { Download, FileImage, KeyRound, Laptop, LockKeyhole, MessageSquareText, ServerOff, ShieldAlert } from "lucide-react";
-import { useLanguage } from "@/components/LanguageProvider";
+import { sectionIds, useLanguage } from "@/components/LanguageProvider";
 
 const contentByLanguage = {
   en: {
@@ -68,7 +68,7 @@ export function HowItWorks() {
   const { language } = useLanguage();
   const c = contentByLanguage[language];
   return (
-    <section id="cara-kerja" className="container-page scroll-mt-24 py-20">
+    <section id={sectionIds[language].howItWorks} className="container-page scroll-mt-24 py-20">
       <div className="mx-auto max-w-2xl text-center"><p className="eyebrow">{c.howEyebrow}</p><h2 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">{c.howTitle}</h2></div>
       <div className="mt-10 grid gap-5 md:grid-cols-3">
         {c.steps.map(({ icon: Icon, title, text }, index) => (
@@ -86,7 +86,7 @@ export function SecuritySection() {
   const { language } = useLanguage();
   const c = contentByLanguage[language];
   return (
-    <section id="keamanan" className="border-y border-slate-200 bg-white py-20 dark:border-slate-800 dark:bg-slate-900/50">
+    <section id={sectionIds[language].security} className="border-y border-slate-200 bg-white py-20 dark:border-slate-800 dark:bg-slate-900/50">
       <div className="container-page grid gap-10 lg:grid-cols-[.8fr_1.2fr]">
         <div><p className="eyebrow">{c.securityEyebrow}</p><h2 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">{c.securityTitle}</h2><p className="mt-4 text-base leading-7 text-slate-600 dark:text-slate-300">{c.securityIntro}</p>
           <div className="mt-6 flex gap-3 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-900 dark:border-amber-900 dark:bg-amber-950/30 dark:text-amber-200"><ShieldAlert className="mt-0.5 size-5 shrink-0" /><p>{c.warning}</p></div>
@@ -103,7 +103,7 @@ export function FAQSection() {
   const { language } = useLanguage();
   const c = contentByLanguage[language];
   return (
-    <section id="faq" className="container-page scroll-mt-24 py-20">
+    <section id={sectionIds[language].faq} className="container-page scroll-mt-24 py-20">
       <div className="mx-auto max-w-3xl"><div className="text-center"><p className="eyebrow">{c.faqEyebrow}</p><h2 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">{c.faqTitle}</h2></div>
         <div className="mt-10 divide-y divide-slate-200 overflow-hidden rounded-2xl border border-slate-200 bg-white dark:divide-slate-800 dark:border-slate-800 dark:bg-slate-900">
           {c.faqs.map(([question, answer]) => <details key={question} className="group p-5 open:bg-slate-50 dark:open:bg-slate-950/40"><summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">{question}<span className="text-xl text-indigo-500 transition group-open:rotate-45">+</span></summary><p className="mt-3 pr-8 text-base leading-7 text-slate-600 dark:text-slate-300">{answer}</p></details>)}

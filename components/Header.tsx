@@ -2,11 +2,11 @@
 
 import { ImageIcon, Languages, Menu, Moon, ShieldCheck, Sun, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useLanguage } from "@/components/LanguageProvider";
+import { sectionIds, useLanguage } from "@/components/LanguageProvider";
 
-const links = {
-  en: [["Home", "#beranda"], ["How It Works", "#cara-kerja"], ["Security", "#keamanan"], ["FAQ", "#faq"]],
-  id: [["Beranda", "#beranda"], ["Cara Kerja", "#cara-kerja"], ["Keamanan", "#keamanan"], ["FAQ", "#faq"]],
+const linkLabels = {
+  en: { home: "Home", howItWorks: "How It Works", security: "Security", faq: "FAQ" },
+  id: { home: "Beranda", howItWorks: "Cara Kerja", security: "Keamanan", faq: "FAQ" },
 };
 
 export default function Header() {
@@ -14,6 +14,10 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { language, toggleLanguage } = useLanguage();
   const isEnglish = language === "en";
+  const links = (Object.keys(linkLabels[language]) as Array<keyof typeof linkLabels.en>).map((section) => [
+    linkLabels[language][section],
+    `#${sectionIds[language][section]}`,
+  ] as const);
 
   useEffect(() => {
     const saved = localStorage.getItem("stegasafe-theme");
@@ -33,7 +37,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200/70 bg-slate-50/85 backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-950/85">
       <div className="container-page flex h-16 items-center justify-between">
-        <a href="#beranda" className="flex items-center gap-2.5 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+        <a href={`#${sectionIds[language].home}`} className="flex items-center gap-2.5 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
           <span className="relative grid size-9 place-items-center rounded-xl bg-indigo-600 text-white">
             <ShieldCheck className="size-5" aria-hidden="true" />
             <ImageIcon className="absolute -bottom-0.5 -right-0.5 size-3 rounded bg-violet-600 p-0.5" aria-hidden="true" />
@@ -42,7 +46,7 @@ export default function Header() {
         </a>
 
         <nav className="hidden items-center gap-7 md:flex" aria-label={isEnglish ? "Main navigation" : "Navigasi utama"}>
-          {links[language].map(([label, href]) => (
+          {links.map(([label, href]) => (
             <a key={href} href={href} className="text-sm font-medium text-slate-600 transition hover:text-indigo-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:text-slate-300 dark:hover:text-indigo-400">
               {label}
             </a>
@@ -67,7 +71,7 @@ export default function Header() {
 
       {menuOpen && (
         <nav id="mobile-menu" className="container-page grid gap-1 border-t border-slate-200 py-3 md:hidden dark:border-slate-800" aria-label={isEnglish ? "Mobile navigation" : "Navigasi mobile"}>
-          {links[language].map(([label, href]) => (
+          {links.map(([label, href]) => (
             <a key={href} href={href} onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium hover:bg-indigo-50 hover:text-indigo-700 dark:hover:bg-slate-900 dark:hover:text-indigo-300">{label}</a>
           ))}
         </nav>

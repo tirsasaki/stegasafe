@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowDown, ArrowRight, FileImage, KeyRound, LockKeyhole, MessageSquareText, ServerOff } from "lucide-react";
-import { useLanguage } from "@/components/LanguageProvider";
+import { sectionIds, useLanguage } from "@/components/LanguageProvider";
 
 function chooseMode(mode: "encode" | "decode") {
   window.dispatchEvent(new CustomEvent("stegasafe-mode", { detail: mode }));
@@ -42,14 +42,14 @@ export default function HeroSection() {
   const { language } = useLanguage();
   const c = copy[language];
   return (
-    <section id="beranda" className="container-page grid items-center gap-10 pb-10 pt-16 lg:grid-cols-[1.1fr_.9fr] lg:pb-14 lg:pt-24">
+    <section id={sectionIds[language].home} className="container-page grid items-center gap-10 pb-10 pt-16 lg:grid-cols-[1.1fr_.9fr] lg:pb-14 lg:pt-24">
       <div className="max-w-3xl">
         <p className="eyebrow mb-4">{c.eyebrow}</p>
         <h1 className="text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl dark:text-white">{c.title}</h1>
         <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">{c.subtitle}</p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <a href="#alat" onClick={() => chooseMode("encode")} className="btn-primary">{c.encode} <ArrowDown className="size-4" /></a>
-          <a href="#alat" onClick={() => chooseMode("decode")} className="btn-secondary">{c.decode} <ArrowRight className="size-4" /></a>
+          <a href={`#${sectionIds[language].tool}`} onClick={() => chooseMode("encode")} className="btn-primary">{c.encode} <ArrowDown className="size-4" /></a>
+          <a href={`#${sectionIds[language].tool}`} onClick={() => chooseMode("decode")} className="btn-secondary">{c.decode} <ArrowRight className="size-4" /></a>
         </div>
         <div className="mt-7 flex flex-wrap gap-2.5 text-sm text-slate-600 dark:text-slate-300">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 py-1.5 dark:border-slate-800 dark:bg-slate-900"><LockKeyhole className="size-3.5 text-indigo-600" />{c.local}</span>

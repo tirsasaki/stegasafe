@@ -1,7 +1,7 @@
 "use client";
 
 import CapacityIndicator from "@/components/CapacityIndicator";
-import { useLanguage } from "@/components/LanguageProvider";
+import { sectionIds, useLanguage } from "@/components/LanguageProvider";
 import ImageDropzone from "@/components/ImageDropzone";
 import ImagePreview from "@/components/ImagePreview";
 import PasswordInput from "@/components/PasswordInput";
@@ -277,7 +277,7 @@ export default function SteganographyTool() {
   }
 
   return (
-    <section id="alat" className="container-page scroll-mt-24 pb-20 pt-4">
+    <section id={sectionIds[language].tool} className="container-page scroll-mt-24 pb-20 pt-4">
       <div className="card animate-fade-up overflow-hidden">
         <div className="grid grid-cols-2 border-b border-slate-200 bg-slate-50/80 p-1.5 dark:border-slate-800 dark:bg-slate-950/50" role="tablist" aria-label="Mode steganografi">
           <button type="button" role="tab" aria-selected={mode === "encode"} onClick={() => switchMode("encode")} className={"flex min-h-12 items-center justify-center gap-2 rounded-xl px-3 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 " + (mode === "encode" ? "bg-white text-indigo-700 shadow-sm dark:bg-slate-800 dark:text-indigo-300" : "text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white")}>
