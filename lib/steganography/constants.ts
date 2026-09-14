@@ -1,0 +1,10 @@
+export const MAGIC = new TextEncoder().encode("STEGSAFE");
+export const FORMAT_VERSION = 1;
+export const FLAG_ENCRYPTED = 1;
+export const SALT_LENGTH = 16;
+export const IV_LENGTH = 12;
+export const HASH_LENGTH = 16;
+export const GCM_TAG_LENGTH = 16;
+export const HEADER_SIZE = MAGIC.length + 1 + 1 + 4 + SALT_LENGTH + IV_LENGTH;
+export const MAX_IMAGE_BYTES = 15 * 1024 * 1024;
+export const PBKDF2_ITERATIONS = 310_000;
