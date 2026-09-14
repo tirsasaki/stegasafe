@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { LanguageProvider } from "@/components/LanguageProvider";
 import "./globals.css";
+import Script from "next/script";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
@@ -18,6 +19,8 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body>
         <LanguageProvider>{children}</LanguageProvider>
+
+        <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cfdd88f13a4447ae8dc8738db2c44a58"}'></script><!-- End Cloudflare Web Analytics -->
       </body>
     </html>
   );
